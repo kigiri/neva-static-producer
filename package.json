@@ -1,0 +1,19 @@
+{
+  "name": "static-producer",
+  "version": "1.0.0",
+  "description": "produce static content for neva web panel",
+  "main": "staticProducer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kigiri/neva-static-producer.git"
+  },
+  "author": "Clement Denis <cdenis@becoast.fr> (https://becoast.fr)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kigiri/neva-static-producer/issues"
+  },
+  "homepage": "https://github.com/kigiri/neva-static-producer#readme"
+}
