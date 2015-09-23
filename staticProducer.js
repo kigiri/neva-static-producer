@@ -57,18 +57,16 @@ const tablesKeys = Object.keys(tables);
   if (!keys[i]) { return }
   return storeTable(keys[i]).then(() => getNextTable(i + 1, keys))
 })(0, tablesKeys).then(() => new Promise((resolve, reject) => {
-  const gzipLength = {};
-  tablesKeys.forEach((table, i) => fs.stat("./json/"+ table +".json.gz", (err, stats) => {
+  const sizes = {};
+  tablesKeys.forEach((table, i) => fs.stat("./json/"+ table +".json", (err, stats) => {
     if (err) { reject(err) }
-      console.log(table +".json", stats);
-    gzipLength[table] = stats.size;
+    sizes[table] = stats.size;
     if (i === tablesKeys.length - 1) {
-      log("alldone 1")
-      resolve(gzipLength);
+      resolve(sizes);
     }
   }));
-})).then(gzipLength => {
+})).then(sizes => {
   jayZip("tables.min")
-  .write(JSON.stringify({gzipLength, tables}) + os.EOL)
-  .onFinish(() =>log("alldone", tables));
+  .write(JSON.stringify({sizes, tables}) + os.EOL)
+  .onFinish(() => log("All done :)"));
 })
