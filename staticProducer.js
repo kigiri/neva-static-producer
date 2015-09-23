@@ -1,6 +1,7 @@
 const path = require("path");
 const zlib = require('zlib');
 const fs = require("fs");
+const os = require('os');
 const log = require("n-bug")(__filename);
 
 global.include = filePath => require(path.join(__dirname, filePath));
@@ -100,11 +101,11 @@ function storeTable(table) {
 
     connection.query("SELECT * FROM "+ table)
     .on('error', reject)
-    .on('field', () => storeString("["))
+    .on('fields', () => storeString("["+ JSON.stringify(tables[table])))
     .on('result', row =>
-      storeString(JSON.stringify(tables[table].map(key => row[key]) +",\n")))
+      storeString(","+ os.EOL + JSON.stringify(tables[table].map(key => row[key]))))
     .on('end', () => {
-      storeString("]");
+      storeString("]"+ os.EOL);
       compress.end();
       log(table, "finish");
       resolve();

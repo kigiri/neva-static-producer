@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/kigiri/neva-static-producer/issues"
   },
-  "homepage": "https://github.com/kigiri/neva-static-producer#readme"
+  "homepage": "https://github.com/kigiri/neva-static-producer#readme",
+  "dependencies": {
+    "n-bug": "^1.0.2"
+  }
 }
